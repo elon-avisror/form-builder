@@ -1,0 +1,11 @@
+{
+  "name": "form-builder-frontend",
+  "version": "1.0.0",
+  "description": "This app is a simple web application that allows the user to create a custom form to which anyone can submit answers. (Like: Google Forms)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elon Avisror <avisror.elon@gmail.com> (http://elon-avisror.com)",
+  "license": "ISC"
+}
