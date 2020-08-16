@@ -1,6 +1,8 @@
 import { PoolConfig, Pool, QueryResult } from "pg";
 import { FormBuilderDAL } from "../../base/DAL";
+import { UserDAL } from "../../base/User";
 import { FormDAL } from "../../base/Form";
+import { PostgresUserDAL } from "./user";
 import { PostgresFormDAL } from "./form";
 
 export interface PostgresDALConfig {
@@ -10,6 +12,7 @@ export interface PostgresDALConfig {
 export class PostgresDAL implements FormBuilderDAL {
     private _pool: Pool;
 
+    User: UserDAL;
     Form: FormDAL;
 
     constructor(options: PostgresDALConfig) {
@@ -19,6 +22,7 @@ export class PostgresDAL implements FormBuilderDAL {
         this._pool.on('error', this.error.bind(this));
 
         // Register DALs
+        this.User = new PostgresUserDAL(this);
         this.Form = new PostgresFormDAL(this);
     }
 

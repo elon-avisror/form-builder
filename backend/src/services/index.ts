@@ -14,7 +14,10 @@ export function loadServices(DAL: FormBuilderDAL): FormBuilderServices {
     // Stand-Alone Services
 
     // System Services
-    services.Form = new FormService({ FormDAL: DAL.Form });
+    services.Form = new FormService({
+        FormDAL: DAL.Form,
+        UserDAL: DAL.User
+    });
 
     return services;
 };

@@ -15,9 +15,19 @@ export function FormRouter(formService: FormService) {
         }
     });
 
-    router.post('/submit', async (req, res) => {
+    router.post('/create', async (req, res) => {
         try {
-            res.send(getResponseObject(null, true));
+            const {
+                name,
+                submissions,
+                user_id
+            } = req.body;
+            const user = await formService.getOwner(parseInt(user_id));
+            if (!user)
+                return res.send(getResponseObject('User not found.'));
+            
+            const form = await formService.create(user.id, name, submissions);
+            res.send(getResponseObject(null, form));
         } catch (err) {
             console.error('[FormRouter]', 'Submit', err);
             res.send(getResponseObject());

@@ -2,6 +2,7 @@ import { BaseDAL } from "./DAL";
 
 export class Form {
     id: number;
+    user_id: number;
     name: string;
     submissions: number;
     page_submit: string;
@@ -10,6 +11,7 @@ export class Form {
 
     constructor(options: Partial<Form>) {
         this.id = parseInt(options.id as any);
+        this.user_id = parseInt(options.user_id as any);
         this.name = options.name;
         this.submissions = parseInt(options.submissions as any);
         this.page_submit = options.page_submit;
