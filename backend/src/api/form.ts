@@ -13,5 +13,15 @@ export function FormRouter(formService: FormService) {
             res.send(getResponseObject());
         }
     });
+
+    router.get('/ping', async (req, res) => {
+        try {
+            res.send(getResponseObject(null, 'Pong!!!'));
+        } catch (err) {
+            console.error('[FormRouter]', 'Ping', err);
+            res.send(getResponseObject());
+        }
+    });
+
     return router;
 };

@@ -6,6 +6,7 @@ export class Form {
     submissions: number;
     submit_page: string;
     submissions_page: string;
+    created: Date;
 
     constructor(options: Partial<Form>) {
         this.id = parseInt(options.id as any);
@@ -13,6 +14,7 @@ export class Form {
         this.submissions = parseInt(options.submissions as any);
         this.submit_page = options.submit_page;
         this.submissions_page = options.submissions_page;
+        this.created = options.created;
     }
 };
 

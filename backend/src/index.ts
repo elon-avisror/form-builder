@@ -6,7 +6,6 @@ import { FormRouter } from './api/form';
 
 dotenv.config();
 const {
-    APP_URI,
     APP_HOST,
     APP_PORT,
     APP_ALLOWED_ORIGINS,
@@ -48,8 +47,10 @@ async function FormBuilderCore() {
 
     // Routers
     API.setRouter('/form', FormRouter(Services.Form));
+    
+    await API.launch();
+    
     console.log(`[+] API listening on ${API.host}:${API.port}`);
-
     return Services;
 };
 

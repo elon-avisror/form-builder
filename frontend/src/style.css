@@ -1,0 +1,32 @@
+ul {
+    list-style-type: none;
+    text-align: center;
+    background-color: azure;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+}
+
+.selected {
+    background-color: rgb(136, 199, 183);
+}
+
+a:link {
+    color: rgb(1, 41, 32);
+}
+
+a:hover {
+    background-color: rgb(148, 218, 223);
+}
+
+a:visited {
+    color: rgb(4, 22, 32);
+}
+  

@@ -89,3 +89,10 @@ you finish the project, when choosing libraries, keep that in mind​.
 
 ## Form Builder - solution
 
+## TODO
+
+1. Forms list page [Monday 17/8/2020 - 3H]
+2. Form builder page [Tuesday 18/8/2020 - 3H]
+3. Form submit page [Wednesday 19/8/2020 - 3H]
+4. Form submissions list page [Thirsday 20/8/2020 - 3H]
+5. Build a guide [Friday 21/8/2020 - 2H]
