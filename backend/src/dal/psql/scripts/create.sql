@@ -12,7 +12,7 @@ CREATE TABLE "form" (
     id              SERIAL PRIMARY KEY,
     user_id         INTEGER REFERENCES "user"(id) NOT NULL,
     name            VARCHAR(64) NOT NULL,
-    submisions      INTEGER,
+    submissions     INTEGER,
     page_submit     VARCHAR(128),
     page_list       VARCHAR(128),
     created         TIMESTAMP DEFAULT NOW()

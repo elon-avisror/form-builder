@@ -1,4 +1,4 @@
-import { FormDAL } from "../base/Form";
+import { FormDAL, Form } from "../base/Form";
 
 export interface FormServiceDependencies {
     FormDAL: FormDAL;
@@ -9,5 +9,10 @@ export class FormService {
 
     constructor(dependencies: FormServiceDependencies) {
         this.tools = dependencies;
+    }
+
+    async get(): Promise<Form[]> {
+        const forms = await this.tools.FormDAL.get();
+        return forms;
     }
 };
