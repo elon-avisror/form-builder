@@ -1,9 +1,11 @@
 import { PoolConfig, Pool, QueryResult } from "pg";
 import { FormBuilderDAL } from "../../base/DAL";
-import { UserDAL } from "../../base/User";
 import { FormDAL } from "../../base/Form";
-import { PostgresUserDAL } from "./user";
+import { LabelDAL } from "../../base/Label";
+import { SubmissionDAL } from "../../base/Submission";
 import { PostgresFormDAL } from "./form";
+import { PostgresLabelDAL } from "./label";
+import { PostgresSubmissionDAL } from "./submission";
 
 export interface PostgresDALConfig {
     poolConfig: PoolConfig;
@@ -12,8 +14,9 @@ export interface PostgresDALConfig {
 export class PostgresDAL implements FormBuilderDAL {
     private _pool: Pool;
 
-    User: UserDAL;
     Form: FormDAL;
+    Label: LabelDAL;
+    Submission: SubmissionDAL;
 
     constructor(options: PostgresDALConfig) {
         // Create pg Pool
@@ -22,8 +25,9 @@ export class PostgresDAL implements FormBuilderDAL {
         this._pool.on('error', this.error.bind(this));
 
         // Register DALs
-        this.User = new PostgresUserDAL(this);
         this.Form = new PostgresFormDAL(this);
+        this.Label = new PostgresLabelDAL(this);
+        this.Submission = new PostgresSubmissionDAL(this);
     }
 
     async query(query: string, values: Array<any>): Promise<QueryResult> {

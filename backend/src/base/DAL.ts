@@ -1,5 +1,6 @@
 import { FormDAL } from "./Form";
-import { UserDAL } from "./User";
+import { LabelDAL } from "./Label";
+import { SubmissionDAL } from "./Submission";
 
 export interface BaseDAL {
     create(item: any): Promise<any>;
@@ -9,6 +10,7 @@ export interface BaseDAL {
 };
 
 export interface FormBuilderDAL {
-    User: UserDAL;
     Form: FormDAL;
+    Label: LabelDAL;
+    Submission: SubmissionDAL;
 };

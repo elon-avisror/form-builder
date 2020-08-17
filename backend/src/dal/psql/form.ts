@@ -18,7 +18,7 @@ export class PostgresFormDAL implements FormDAL {
         return result && result.rowCount === 1 && new Form(result.rows[0]);
     }
 
-    async get(): Promise<Form[]> {
+    async getAll(): Promise<Form[]> {
         const results = await this.db.query(`
             SELECT
                 *
@@ -33,12 +33,12 @@ export class PostgresFormDAL implements FormDAL {
             UPDATE
                 "form"
             SET
-                "name"=$2
+                "name"=$2, "submissions"=$3
             WHERE
                 "id"=$1
             RETURNING
                 *
-        `, [form.id, form.name]);
+        `, [form.id, form.name, form.submissions]);
         return result && result.rowCount === 1 && new Form(result.rows[0]);
     }
 

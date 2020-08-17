@@ -1,3 +1,7 @@
+body {
+    text-align: center;
+}
+
 ul {
     list-style-type: none;
     text-align: center;
@@ -14,16 +18,16 @@ li {
     text-align: center;
 }
 
+li:hover {
+    background-color: rgb(148, 218, 223);
+}
+
 .selected {
     background-color: rgb(136, 199, 183);
 }
 
 a:link {
     color: rgb(1, 41, 32);
-}
-
-a:hover {
-    background-color: rgb(148, 218, 223);
 }
 
 a:visited {

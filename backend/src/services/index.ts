@@ -1,23 +1,26 @@
-import { FormService } from './form';
 import { FormBuilderDAL } from '../base/DAL';
+import { FormService } from './form';
+import { LabelService } from "./label";
+import { SubmissionService } from "./submission";
 
 export interface FormBuilderServices {
-    // Stand-Alone Services
+    // FUTURE: Stand-Alone Services
 
     // System Services
     Form: FormService;
+    Label: LabelService;
+    Submission: SubmissionService;
 };
 
 export function loadServices(DAL: FormBuilderDAL): FormBuilderServices {
     let services = <FormBuilderServices>{};
 
-    // Stand-Alone Services
+    // FUTURE: Stand-Alone Services
 
     // System Services
-    services.Form = new FormService({
-        FormDAL: DAL.Form,
-        UserDAL: DAL.User
-    });
+    services.Form = new FormService({ FormDAL: DAL.Form });
+    services.Label = new LabelService({ LabelDAL: DAL.Label });
+    services.Submission = new SubmissionService({ SubmissionDAL: DAL.Submission });
 
     return services;
 };

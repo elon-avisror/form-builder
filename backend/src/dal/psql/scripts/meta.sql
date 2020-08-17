@@ -1,10 +1,14 @@
-INSERT INTO "user"
-    (id,    first_name,     last_name,      age,    city,           phone_number)
-VALUES
-    (1,     'John',         'Pfeifer',      15,     'Tel Aviv',     '073-16-XXXX');
-
 INSERT INTO "form"
-    (id,    user_id,        name,                   submissions,        page_submit,                page_list)
+    (id,    name,                   submissions)
 VALUES
-    (1,     1,              'Car Campaign',         15,                 'SOME_PAGE_SUBMIT',         'SOME_PAGE_LIST'),
-    (2,     1,              'Job Application',      20,                 'SOME_PAGE_SUBMIT',         'SOME_PAGE_LIST');
+    (1,     'Car Campaign',         15),
+    (2,     'Job Application',      20);
+
+INSERT INTO "label"
+    (id,    form_id,        name,               type,           value)
+VALUES
+    (1,     2,              'First Name',       'text',         'John'),
+    (2,     2,              'Last Name',        'text',         'Pfeifer'),
+    (3,     2,              'Age',              'number',       '15'),
+    (4,     2,              'City',             'text',         'Tel Aviv'),
+    (5,     2,              'Phone Number',     'tel',          '073-16-XXXX');

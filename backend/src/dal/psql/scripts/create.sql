@@ -1,19 +1,22 @@
-CREATE TABLE "user" (
+CREATE TABLE "form" (
     id              SERIAL PRIMARY KEY,
-    first_name      VARCHAR(64) NOT NULL,
-    last_name       VARCHAR(64) NOT NULL,
-    age             FLOAT,
-    city            VARCHAR(64),
-    phone_number    VARCHAR(16),
+    name            VARCHAR(64) NOT NULL,
+    submissions     INTEGER DEFAULT 0,
     created         TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE "form" (
+CREATE TABLE "label" (
     id              SERIAL PRIMARY KEY,
-    user_id         INTEGER REFERENCES "user"(id) NOT NULL,
+    form_id         INTEGER REFERENCES "form"(id) NOT NULL,
     name            VARCHAR(64) NOT NULL,
-    submissions     INTEGER,
-    page_submit     VARCHAR(128),
-    page_list       VARCHAR(128),
+    type            VARCHAR(32) NOT NULL,
+    value           TEXT DEFAULT '',
+    created         TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE "submission" (
+    id              SERIAL PRIMARY KEY,
+    form_id         INTEGER REFERENCES "form"(id) NOT NULL,
+    data            TEXT DEFAULT '{}',
     created         TIMESTAMP DEFAULT NOW()
 );

@@ -3,6 +3,8 @@ import { FormBuilderAPI } from './api';
 import { Postgres } from './dal';
 import { FormBuilderServices, loadServices } from "./services";
 import { FormRouter } from './api/form';
+import { LabelRouter } from "./api/label";
+import { SubmissionRouter } from "./api/submission";
 
 dotenv.config();
 const {
@@ -33,7 +35,7 @@ async function FormBuilderCore() {
     });
     // Init Services
     console.log('[+] Initializing Services...');
-    const Services = loadServices(PostgresDAL);
+    const Services: FormBuilderServices = loadServices(PostgresDAL);
 
     // Setup API
     console.log('[+] Setting up the API...');
@@ -47,6 +49,8 @@ async function FormBuilderCore() {
 
     // Routers
     API.setRouter('/form', FormRouter(Services.Form));
+    API.setRouter('/label', LabelRouter(Services.Label));
+    API.setRouter('/submission', SubmissionRouter(Services.Submission));
     
     await API.launch();
     

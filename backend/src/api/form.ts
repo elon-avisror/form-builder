@@ -1,9 +1,45 @@
-import { FormService } from "../services/form";
-import { Router } from "express";
+import { Router, json as expressJson } from "express";
 import { getResponseObject } from ".";
+import { FormService } from "../services/form";
 
 export function FormRouter(formService: FormService) {
     const router = Router();
+
+    router.post('/create', expressJson(), async (req, res) => {
+        try {
+            const form = await formService.create(req.body.name);
+            res.send(getResponseObject(null, form));
+        } catch (err) {
+            console.error('[FormRouter]', 'Create', err);
+            res.send(getResponseObject());
+        }
+    });
+
+    router.get('/submission', async (req, res) => {
+        try {
+            const form_id = parseInt(req.query.form_id as string);
+            const submissionForm = await formService.get({ form_id });
+            res.send(getResponseObject(null, submissionForm));
+        } catch (err) {
+            console.error('[FormRouter]', 'Submission', err);
+            res.send(getResponseObject());
+        }
+    });
+
+    router.post('/submit', expressJson(), async (req, res) => {
+        try {
+            const form_id = parseInt(req.body.form_id);
+            const data = req.body.data;
+            const form = await formService.get({ form_id });
+            if (!(form || req.body.data))
+                return res.send(getResponseObject());
+            const submitedForm = await formService.submit(form_id, data);
+            res.send(getResponseObject(null, submitedForm));
+        } catch (err) {
+            console.error('[FormRouter]', 'Submit', err);
+            res.send(getResponseObject());
+        }
+    });
 
     router.get('/list', async (req, res) => {
         try {
@@ -11,25 +47,6 @@ export function FormRouter(formService: FormService) {
             res.send(getResponseObject(null, forms));
         } catch (err) {
             console.error('[FormRouter]', 'List', err);
-            res.send(getResponseObject());
-        }
-    });
-
-    router.post('/create', async (req, res) => {
-        try {
-            const {
-                name,
-                submissions,
-                user_id
-            } = req.body;
-            const user = await formService.getOwner(parseInt(user_id));
-            if (!user)
-                return res.send(getResponseObject('User not found.'));
-            
-            const form = await formService.create(user.id, name, submissions);
-            res.send(getResponseObject(null, form));
-        } catch (err) {
-            console.error('[FormRouter]', 'Submit', err);
             res.send(getResponseObject());
         }
     });
