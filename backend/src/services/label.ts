@@ -17,4 +17,12 @@ export class LabelService {
         }));
         return createdLabel;
     }
+
+    async get(options: { form_id?: number, label_id?: number } = {}): Promise<Label[]> {
+        if (options.form_id)
+            return await this.tools.LabelDAL.getByForm(options.form_id);
+        if (options.label_id)
+            return [await this.tools.LabelDAL.getById(options.label_id)];
+        return;
+    }
 };

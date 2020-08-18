@@ -21,12 +21,11 @@ export class PostgresSubmissionDAL implements SubmissionDAL {
     async getByForm(form_id: number): Promise<Submission[]> {
         const results = await this.db.query(`
             SELECT
-                SUB.*
+                *
             FROM
-                "submission" SUB
-                LEFT JOIN "form" FRM ON SUB."form_id" = FRM."id"
+                "submission"
             WHERE
-                FRM."id"=$1
+                "form_id"=$1
         `, [form_id]);
         return results && results.rows.map(row => new Submission(row));
     }

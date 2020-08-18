@@ -18,7 +18,7 @@ export class PostgresLabelDAL implements LabelDAL {
         return result && result.rowCount === 1 && new Label(result.rows[0]);
     }
 
-    async getByFormId(form_id: number): Promise<Label[]> {
+    async getByForm(form_id: number): Promise<Label[]> {
         const results = await this.db.query(`
             SELECT
                 *

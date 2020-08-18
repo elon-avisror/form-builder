@@ -4,16 +4,12 @@ export class Form {
     id: number;
     name: string;
     submissions: number;
-    page_submit: string;
-    page_list: string;
     created: Date;
 
     constructor(options: Partial<Form>) {
         this.id = parseInt(options.id as any);
         this.name = options.name;
-        this.submissions = parseInt(options.submissions as any);
-        this.page_submit = options.page_submit;
-        this.page_list = options.page_list;
+        this.submissions = parseInt(options.submissions as any) || 0;
         this.created = options.created;
     }
 };
