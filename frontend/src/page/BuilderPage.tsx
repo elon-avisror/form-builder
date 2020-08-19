@@ -1,35 +1,33 @@
 import React from "react";
-import { LabelTypes, Label } from "../api/Label";
+import { LabelTypes, LabelAPI } from "../api/LabelAPI";
 
 declare type Item = { id: string | number | null | undefined, text: React.ReactNode };
 
-interface BuilderState {
-    items: Label[] | any;
+interface BuilderPageState {
+    items: LabelAPI[] | any;
     text: string;
     type: LabelTypes;
 };
 
-interface BuilderProps {
+interface BuilderPageProps {
     items: Item[];
 };
 
-export default class Builder extends React.Component<BuilderProps, BuilderState> {
-    constructor(props: any) {
+export default class BuilderPage extends React.Component<BuilderPageProps, BuilderPageState> {
+    constructor(props: Readonly<BuilderPageProps>) {
         super(props);
         this.state = {
             items: [],
             text: '',
             type: LabelTypes.Text
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange(e: { target: { value: any; }; }) {
+    handleChange = (e: { target: { value: any; }; }) => {
         this.setState({ text: e.target.value });
     }
     
-    handleSubmit(e: { preventDefault: () => void; }) {
+    handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (this.state.text.length === 0) {
             return;
@@ -44,7 +42,7 @@ export default class Builder extends React.Component<BuilderProps, BuilderState>
         }));
     }
 
-    render(): JSX.Element {
+    render = (): JSX.Element => {
         return (
             <div>
                 {Array.isArray(this.state.items) && this.state.items.length > 0 ?

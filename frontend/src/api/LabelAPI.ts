@@ -1,4 +1,4 @@
-export interface Label {
+export interface LabelAPI {
     id: number;
     form_id: number;
     name: string;

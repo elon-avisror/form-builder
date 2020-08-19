@@ -1,13 +1,13 @@
 import React, { FormEvent, ChangeEvent } from "react";
 
-interface FormsProps {};
+interface FormsTempProps {};
 
-interface FormsState {
+interface FormsTempState {
     username: string;
 };
 
-export default class Forms extends React.Component<FormsProps, FormsState> {
-    constructor(props: FormsProps) {
+export default class FormsTemp extends React.Component<FormsTempProps, FormsTempState> {
+    constructor(props: Readonly<FormsTempProps>) {
         super(props);
         this.state = { username: '' };
       }

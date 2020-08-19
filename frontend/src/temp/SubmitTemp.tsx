@@ -1,8 +1,8 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 
-interface SubmitProps {};
+interface SubmitTempProps {};
 
-interface SubmitState {
+interface SubmitTempState {
     username: string;
     age: string;
 };
@@ -11,8 +11,8 @@ interface DinamicState {
     [x: string]: string
 };
 
-export default class Submit extends React.Component<SubmitProps, SubmitState | DinamicState> {
-    constructor(props: SubmitProps) {
+export default class SubmitTemp extends React.Component<SubmitTempProps, SubmitTempState | DinamicState> {
+    constructor(props: Readonly<SubmitTempProps>) {
         super(props);
         this.state = {
             username: '',
@@ -20,13 +20,13 @@ export default class Submit extends React.Component<SubmitProps, SubmitState | D
         };
     }
 
-    myChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    myChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         let nam = event.target.name;
         let val = event.target.value;
         this.setState({ [nam]: val });
     }
 
-    render(): JSX.Element {
+    render = (): JSX.Element => {
         return (
             <div>
                 <h1>Submit Page</h1>

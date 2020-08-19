@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
-import Home from './page/Home';
-import Builder from './page/Builder';
-import Forms from './page/Forms';
-import Submissions from './page/Submissions';
-import Submit from './page/Submit';
+import HomePage from './page/HomePage';
+import BuilderPage from './page/BuilderPage';
+import FormsListPage from './page/FormsListPage';
+import SubmissionsListPage from './page/SubmissionsListPage';
+import SubmitPage from './page/SubmitPage';
 import Nav from './shared/Nav';
+import FormsTemp from './temp/FormsListTemp';
 
-export default class App extends Component {
-
-  render(): JSX.Element {
+export default class App extends React.Component {
+  render = (): JSX.Element => {
     return (
       <div className="App">
+        <Nav />
         <Router>
-          <Nav />
           <Switch>
-            <Route exact={true} path="/" component={Home} />
-            <Route exact={true} path="/builder.html" component={Builder} />
-            <Route exact={true} path="/forms.html" component={Forms} />
-            <Route exact={true} path="/submissions.html" component={Submissions} />
-            <Route exact={true} path="/submit.html" component={Submit} />
+            {/* App Pages */}
+            <Route exact={true} path="/" component={HomePage} />
+            <Route exact={true} path="/page/builder.html" component={BuilderPage} />
+            <Route exact={true} path="/page/forms.html" component={FormsListPage} />
+            <Route exact={true} path="/page/submissions.html" component={SubmissionsListPage} />
+            <Route exact={true} path="/page/submit.html" component={SubmitPage} />
+
+            {/* App Temp */}
+            <Route exact={true} path="/temp/forms.html" component={FormsTemp}/>
           </Switch>
         </Router>
       </div>
