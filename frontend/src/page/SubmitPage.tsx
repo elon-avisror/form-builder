@@ -20,7 +20,7 @@ export default class SubmitPage extends React.Component<SubmitPageProps, SubmitP
         };
     }
 
-    myChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    private myChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         let nam = event.target.name;
         let val = event.target.value;
         this.setState({ [nam]: val });

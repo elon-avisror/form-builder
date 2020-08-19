@@ -14,6 +14,8 @@ export function LabelRouter(labelService: LabelService) {
                 type,
                 value
             );
+            if (!createdLabel)
+                return res.send(getResponseObject());
             res.send(getResponseObject(null, createdLabel));
         } catch (err) {
             console.error('[LabelRouter]', 'Create', err);
@@ -21,6 +23,7 @@ export function LabelRouter(labelService: LabelService) {
         }
     });
 
+    // TODO: not for now!
     router.get('/list', async (req, res) => {
         try {
             const form_id = parseInt(req.query.form_id as any);

@@ -35,10 +35,10 @@ export class PostgresSubmissionDAL implements SubmissionDAL {
             UPDATE
                 "submission"
             SET
-                "data"=$2
+                "labels"=$2
             WHERE
                 "id"=$1
-        `, [submission.id, submission.data]);
+        `, [submission.id, submission.labels]);
         return result && result.rowCount === 1 && new Submission(result.rows[0]);
     }
     

@@ -23,11 +23,11 @@ export default class BuilderPage extends React.Component<BuilderPageProps, Build
         };
     }
     
-    handleChange = (e: { target: { value: any; }; }) => {
+    private handleChange = (e: { target: { value: any; }; }) => {
         this.setState({ text: e.target.value });
     }
     
-    handleSubmit = (e: { preventDefault: () => void; }) => {
+    private handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (this.state.text.length === 0) {
             return;

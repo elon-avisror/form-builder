@@ -4,10 +4,8 @@ import './App.css';
 import HomePage from './page/HomePage';
 import BuilderPage from './page/BuilderPage';
 import FormsListPage from './page/FormsListPage';
-import SubmissionsListPage from './page/SubmissionsListPage';
-import SubmitPage from './page/SubmitPage';
 import Nav from './shared/Nav';
-import FormsTemp from './temp/FormsListTemp';
+import SubmissionsListPage from './page/SubmissionsListPage';
 
 export default class App extends React.Component {
   render = (): JSX.Element => {
@@ -16,15 +14,12 @@ export default class App extends React.Component {
         <Nav />
         <Router>
           <Switch>
-            {/* App Pages */}
             <Route exact={true} path="/" component={HomePage} />
             <Route exact={true} path="/page/builder.html" component={BuilderPage} />
             <Route exact={true} path="/page/forms.html" component={FormsListPage} />
-            <Route exact={true} path="/page/submissions.html" component={SubmissionsListPage} />
-            <Route exact={true} path="/page/submit.html" component={SubmitPage} />
 
-            {/* App Temp */}
-            <Route exact={true} path="/temp/forms.html" component={FormsTemp}/>
+            {/* Hack for now! */}
+            <Route exact={true} path="/page/submissions.html" component={SubmissionsListPage} />
           </Switch>
         </Router>
       </div>

@@ -12,3 +12,8 @@ VALUES
     (3,     2,              'Age',              'number',       '15'),
     (4,     2,              'City',             'text',         'Tel Aviv'),
     (5,     2,              'Phone Number',     'tel',          '073-16-XXXX');
+
+INSERT INTO "submission"
+    (id,    form_id,        labels)
+VALUES
+    (1,     2,              '{}');

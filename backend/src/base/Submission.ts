@@ -3,7 +3,7 @@ import { BaseDAL } from "./DAL";
 export class Submission {
     id: number;
     form_id: number;
-    data: string;
+    labels: string;
     created: Date;
 
     constructor(options: Partial<Submission>) {
@@ -11,12 +11,16 @@ export class Submission {
         this.form_id = parseInt(options.form_id as any);
         this.created = options.created;
         
-        this.setValue(options.data);
+        this.setValue(options.labels);
     }
 
-    setValue(data: any): any {
+    setValue(val: any): void {
         try {
-            this.data = JSON.stringify(data);
+            if (typeof val === 'string') {
+                this.labels = val;
+                return;
+            }
+            this.labels = JSON.stringify(val);
         } catch (err) {
             console.error('[Submission]', 'setValue', err);
         }
@@ -24,7 +28,7 @@ export class Submission {
 
     getValue(): any {
         try {
-            return JSON.parse(this.data);
+            return JSON.parse(this.labels);
         } catch (err) {
             console.error('[Submission]', 'getValue', err);
         }

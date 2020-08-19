@@ -1,17 +1,61 @@
 import React from "react";
 import axios from "axios";
+import DataTable from "../shared/DataTable";
+import { SubmissionAPI } from "../api/SubmissionAPI";
+import { LabelTypes } from "../api/LabelAPI";
 
-interface SubmissionsListPageProps {};
+interface SubmissionsListPageProps {
+    form_id: number;
+};
 
-interface SubmissionsListPageState {};
+interface SubmissionsListPageState {
+    headings: string[];
+    rows: React.ReactText[][];
+    types: LabelTypes[];
+};
 
 export default class SubmissionsListPage extends React.Component<SubmissionsListPageProps, SubmissionsListPageState> {
+    constructor(props: Readonly<SubmissionsListPageProps>) {
+        super(props);
+        this.state = {
+            headings: [],
+            rows: [],
+            types: []
+        }
+    }
+
     componentDidMount = async () => {
+        const params = {
+            // form_id: this.props.form_id
+            form_id: 1
+        };
+
         try {
-            const submissions = await axios.get(`http://127.0.0.1:4000/label/list?form_id=2`);
-            console.log(submissions);
+            const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/submission/list';
+            const response = await axios.get(API_URL_FORM_LIST, { params });
+            const dataResponse = response.data;
+            if (dataResponse.ok && Array.isArray(dataResponse.data) && dataResponse.data.length > 0) {
+                const submissions: SubmissionAPI[] = dataResponse.data;
+
+                const headings: string[] = [];
+                const rows: React.ReactText[][] = [];
+                const types: LabelTypes[] = [];
+                submissions.forEach((submission, index) => {
+                    const submissionRows: React.ReactText[] = [];
+                    submission.labels.forEach(label => {
+                        // Happens only once, for the first submission! (getting the headings from the labels)
+                        if (index === 0) {
+                            headings.push(label.name);
+                            types.push(label.type);
+                        }
+                        submissionRows.push(label.value);
+                    });
+                    rows.push(submissionRows);
+                });
+                this.setState({ headings, rows, types });
+            }
         } catch (err) {
-            console.error('[SubmissionsListPageComponent]', 'AxiosGet', err);
+            console.error('[SubmissionsListPageComponent]', 'GetSubmissionsList', err);
         }
     }
 
@@ -19,10 +63,7 @@ export default class SubmissionsListPage extends React.Component<SubmissionsList
         return (
             <div>
                 <h1>Submissions List Page</h1>
-                <h2>TODO</h2>
-                <p>This page will include a table of all submissionsPage related to a specific form by
-                    its id. E​ach header is the field name and each row is a submission with the user
-                    input.</p>
+                <DataTable headings={this.state.headings} rows={this.state.rows} types={this.state.types} />
             </div>
         );
     }

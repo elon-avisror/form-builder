@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Cell from './Cell';
+import { LabelTypes } from '../api/LabelAPI';
 
 interface DataTableProps {
     headings: string[];
     rows: React.ReactText[][];
+    types: LabelTypes[];
 };
 
-interface DataTableState {
-    
-};
+interface DataTableState {};
 
 export default class DataTable extends React.Component<DataTableProps, DataTableState> {
     renderHeadingRow = (_cell: any, cellIndex: number): JSX.Element => {
@@ -20,6 +20,7 @@ export default class DataTable extends React.Component<DataTableProps, DataTable
                 content={headings[cellIndex]}
                 header={true}
                 name={headings[cellIndex]}
+                type={this.props.types[cellIndex]}
             />
         );
     };
@@ -36,6 +37,7 @@ export default class DataTable extends React.Component<DataTableProps, DataTable
                             content={rows[rowIndex][cellIndex]}
                             header={false}
                             name={headings[cellIndex]}
+                            type={this.props.types[cellIndex]}
                         />
                     );
                 })}
@@ -61,4 +63,4 @@ export default class DataTable extends React.Component<DataTableProps, DataTable
             </table>
         );
     }
-}
+};

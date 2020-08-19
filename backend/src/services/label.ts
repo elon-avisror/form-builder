@@ -11,7 +11,7 @@ export class LabelService {
         this.tools = dependencies;
     }
 
-    async create(form_id: number, name: string, type: LabelTypes, value: string): Promise<boolean> {
+    async create(form_id: number, name: string, type: LabelTypes, value: string): Promise<Label> {
         const createdLabel = await this.tools.LabelDAL.create(new Label({
             form_id, name, type, value
         }));

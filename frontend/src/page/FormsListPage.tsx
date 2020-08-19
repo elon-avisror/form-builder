@@ -2,12 +2,14 @@ import React from 'react';
 import DataTable from '../shared/DataTable';
 import axios from 'axios';
 import { FormAPI } from '../api/FormAPI';
+import { LabelTypes } from '../api/LabelAPI';
 
 interface FormsListPageProps {};
 
 interface FormsListPageState {
     headings: string[];
     rows: React.ReactText[][];
+    types: LabelTypes[];
 };
 
 export default class FormsListPage extends React.Component<FormsListPageProps, FormsListPageState> {
@@ -15,7 +17,8 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
         super(props);
         this.state = {
             headings: [],
-            rows: []
+            rows: [],
+            types: []
         }
     }
 
@@ -36,15 +39,20 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
                 const forms: FormAPI[] = dataResponse.data;
 
                 const rows: React.ReactText[][] = [];
-                forms.forEach(form => {
+                const types: LabelTypes[] = [];
+                forms.forEach((form, index) => {
                     const formRows: React.ReactText[] = [];
+
+                    // Happens only once, for the first form! (setting all headings to text type)
+                    if (index === 0)
+                        types.push(LabelTypes.Text);
 
                     formRows.push(form.id);
                     formRows.push(form.name);
                     formRows.push(form.submissions);
 
-                    formRows.push(`http://localhost.com:3000/page/submit/${form.id}`);
-                    formRows.push(`http://localhost.com:3000/page/submissions/${form.id}`);
+                    formRows.push(`http://localhost.com:3000/page/submit.html/${form.id}`);
+                    formRows.push(`http://localhost.com:3000/page/submissions.html/${form.id}`);
 
                     // TODO:
                     // 1. Create a link to Form Submit Page (by this form.id)
@@ -68,7 +76,7 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
         return (
             <div>
                 <h1>Forms List Page</h1>
-                <DataTable headings={this.state.headings} rows={this.state.rows} />
+                <DataTable headings={this.state.headings} rows={this.state.rows} types={this.state.types} />
             </div>
         );
     }

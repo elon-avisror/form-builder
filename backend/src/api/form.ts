@@ -18,7 +18,7 @@ export function FormRouter(formService: FormService) {
     router.get('/submission', async (req, res) => {
         try {
             const form_id = parseInt(req.query.form_id as string);
-            const submissionForm = await formService.get({ form_id });
+            const [submissionForm] = await formService.get({ form_id });
             res.send(getResponseObject(null, submissionForm));
         } catch (err) {
             console.error('[FormRouter]', 'Submission', err);
@@ -29,11 +29,11 @@ export function FormRouter(formService: FormService) {
     router.post('/submit', expressJson(), async (req, res) => {
         try {
             const form_id = parseInt(req.body.form_id);
-            const data = req.body.data;
+            const labels = req.body.labels;
             const form = await formService.get({ form_id });
-            if (!(form || req.body.data))
+            if (!(form || Array.isArray(req.body.labels)))
                 return res.send(getResponseObject());
-            const submitedForm = await formService.submit(form_id, data);
+            const submitedForm = await formService.submit(form_id, labels);
             res.send(getResponseObject(null, submitedForm));
         } catch (err) {
             console.error('[FormRouter]', 'Submit', err);

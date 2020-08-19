@@ -18,7 +18,11 @@ export function loadServices(DAL: FormBuilderDAL): FormBuilderServices {
     // FUTURE: Stand-Alone Services
 
     // System Services
-    services.Form = new FormService({ FormDAL: DAL.Form });
+    services.Form = new FormService({
+        FormDAL: DAL.Form,
+        LabelDAL: DAL.Label,
+        SubmissionDAL: DAL.Submission
+    });
     services.Label = new LabelService({ LabelDAL: DAL.Label });
     services.Submission = new SubmissionService({ SubmissionDAL: DAL.Submission });
 
