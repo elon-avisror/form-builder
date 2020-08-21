@@ -1,18 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface NavProps {};
-
-interface NavState {};
-
-export default class Nav extends React.Component<NavProps, NavState> {
-    constructor(props: Readonly<NavProps>) {
-        super(props);
-        this.state = {
-            match: {}
-        };
-    }
-
+export default class Nav extends React.Component {
     render = (): JSX.Element => {
         return (
             <ul className="Nav-ul">

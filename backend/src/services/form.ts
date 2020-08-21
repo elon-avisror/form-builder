@@ -15,14 +15,23 @@ export class FormService {
         this.tools = dependencies;
     }
 
-    async create(name: string, labels: any): Promise<Form> {
+    async create(name: string, labels: Label[]): Promise<Form> {
         const form = await this.tools.FormDAL.create(new Form({ name }));
         if (!form)
             throw new Error('Cannot create form.');
+
+        // Remove client label id's (or other unknown label data)
+        const submissionLabels: any = labels.map(label => {
+            return {
+                name: label.name,
+                type: label.type,
+                value: label.value
+            }
+        });
         // By default it will create a blank form
         const submission = await this.tools.SubmissionDAL.create(new Submission({
-            labels,
-            form_id: form.id
+            form_id: form.id,
+            labels: submissionLabels
         }));
         if (!submission)
             throw new Error(`Cannot create submission to form with id ${form.id}.`);

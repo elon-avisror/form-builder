@@ -54,10 +54,6 @@
   text-align: center;
 }
 
-.List-Item-ul {
-  list-style-type: none;
-}
-
 /* Nav component */
 .Nav-ul {
   list-style-type: none;
