@@ -32,10 +32,10 @@ export default class SubmitPage extends React.Component<SubmitPageProps, SubmitP
         try {
             const response = await axios.post(API_URL_SUBMIT_FORM, params);
             if (!response || !response.data.ok) {
-                alert('Somthing went wrong!');
-                this.props.history.push(`/`);
+                alert('Somthing went wrong, try again later.');
+                return this.props.history.push(`/page/submit/${this.state.submission.form_id}`);
             }
-            alert('Congreates, You have successfuly submitted this form!'); // TODO: add form name
+            alert(`Congrats, You have successfully submitted ${this.state.submission.name} form!`); // TODO: add form name
             this.props.history.push(`/page/forms`);
         } catch (err) {
             console.error('[SubmitPageComponent]', 'PostSubmitForm', err);
