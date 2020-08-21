@@ -1,16 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface NavProps {};
 
 interface NavState {};
 
 export default class Nav extends React.Component<NavProps, NavState> {
-    render(): JSX.Element {
+    constructor(props: Readonly<NavProps>) {
+        super(props);
+        this.state = {
+            match: {}
+        };
+    }
+
+    render = (): JSX.Element => {
         return (
-            <ul>
-                <li><a href="/">Home Page</a></li>
-                <li><a href="/page/forms.html">Forms List Page</a></li>
-                <li><a href="/page/builder.html">Builder Page</a></li>
+            <ul className="Nav-ul">
+                <Link className="Nav-li" to="/">Home Page</Link>
+                <Link className="Nav-li" to="/page/forms">Forms List Page</Link>
+                <Link className="Nav-li" to="/page/builder">Builder Page</Link>
             </ul>
         );
     }

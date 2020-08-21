@@ -78,7 +78,7 @@ export class FormBuilderAPI {
     }
 
     closeServer() {
-        if(this._server) {
+        if (this._server) {
             this._server.close();
             this._server = undefined;
         }
@@ -86,9 +86,9 @@ export class FormBuilderAPI {
 };
 
 export function getResponseObject(err: string = 'Something went wrong', data?: any): APIResponse {
-    if(data === null || data === undefined)
+    if (data === null || data === undefined)
         data = false;
-    return err ? { ok: false, error: err } : { ok: true, data: data };
+    return err ? { ok: false, error: err } : { ok: !!data, data };
 };
 
 export interface APIResponse {

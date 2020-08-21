@@ -31,7 +31,7 @@ export class PostgresDAL implements FormBuilderDAL {
     }
 
     async query(query: string, values: Array<any>): Promise<QueryResult> {
-        if(!this._pool) {
+        if (!this._pool) {
             this.error(new Error('Pool is not connected.'));
             return;
         }

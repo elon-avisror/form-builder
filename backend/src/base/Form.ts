@@ -16,4 +16,5 @@ export class Form {
 
 export interface FormDAL extends BaseDAL {
     getAll(): Promise<Form[]>;
+    getName(form_id: number): Promise<string>;
 };

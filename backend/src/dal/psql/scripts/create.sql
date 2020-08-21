@@ -17,6 +17,7 @@ CREATE TABLE "label" (
 CREATE TABLE "submission" (
     id              SERIAL PRIMARY KEY,
     form_id         INTEGER REFERENCES "form"(id) NOT NULL,
+    type            VARCHAR(32) NOT NULL,
     labels          TEXT DEFAULT '{}',
     created         TIMESTAMP DEFAULT NOW()
 );

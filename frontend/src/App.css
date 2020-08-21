@@ -38,6 +38,10 @@
 }
 
 /* Shared components */
+.On-Table {
+  text-align: -webkit-center;
+}
+
 .Table {
   border-spacing: 0px;
   background: #fff;
@@ -48,4 +52,23 @@
   border: 1px solid #f4f6f8;
   padding: 4px;
   text-align: center;
+}
+
+.List-Item-ul {
+  list-style-type: none;
+}
+
+/* Nav component */
+.Nav-ul {
+  list-style-type: none;
+  background-color: azure;
+}
+
+.Nav-li {
+  display: inline-block;
+  width: 120px;
+}
+
+.Nav-li:hover {
+  background-color: rgb(148, 218, 223);
 }

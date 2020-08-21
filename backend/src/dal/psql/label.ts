@@ -36,13 +36,15 @@ export class PostgresLabelDAL implements LabelDAL {
             let label = labels[i];
 
             // Validations
-            if(label.id)
+            if (label.id)
                 results.push(await this.update(label));
-            if(!(label.form_id))
+
+            // TODO: check this!
+            if (!label.form_id)
                 results.push(null);
 
             const existingLabel = await this.getById(label.id);
-            if(existingLabel) {
+            if (existingLabel) {
                 label.id = existingLabel.id;
                 results.push(await this.update(label));
             }

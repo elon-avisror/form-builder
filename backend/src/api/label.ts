@@ -5,6 +5,7 @@ import { LabelService } from "../services/label";
 export function LabelRouter(labelService: LabelService) {
     const router = Router();
 
+    // TODO: not for now!
     router.post('/create', expressJson(), async (req, res) => {
         try {
             const { form_id, name, type, value } = req.body;

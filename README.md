@@ -1,4 +1,12 @@
-# Form Builder - Task Description
+# Form Builder - Solution
+
+## Guides
+
+In order to run the forms-builder-**backend**, go the **backend** directory to his README file, and follow his steps.
+
+Same for forms-builder-**frontend**.
+
+## Form Builder - Task Description
 
 Welcome to the Form Builder application exam. This app is a simple web
 application that allows the user to create a custom form to which anyone can
@@ -87,9 +95,7 @@ you finish the project, when choosing libraries, keep that in mind​.
 
     Also, this page should include a button that redirects to ​**forms list page​**.
 
-## Form Builder - solution
-
-## TODO
+## Scheduling
 
 1. Forms list page [Monday 17/8/2020 - 3H]
 2. Form builder page [Tuesday 18/8/2020 - 3H]

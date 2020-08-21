@@ -3,12 +3,14 @@ import { BaseDAL } from "./DAL";
 export class Submission {
     id: number;
     form_id: number;
+    type: SubmissionType;
     labels: string;
     created: Date;
 
     constructor(options: Partial<Submission>) {
         this.id = parseInt(options.id as any);
         this.form_id = parseInt(options.form_id as any);
+        this.type = options.type || SubmissionType.Blank;
         this.created = options.created;
         
         this.setValue(options.labels);
@@ -35,6 +37,11 @@ export class Submission {
     }
 };
 
+export enum SubmissionType {
+    Blank = "BLANK",
+    Submited = "SUBMITED"
+};
+
 export interface SubmissionDAL extends BaseDAL {
-    getByForm(form_id: number): Promise<Submission[]>
+    get(options: { form_id: number, type?: SubmissionType }): Promise<Submission[]>;
 };

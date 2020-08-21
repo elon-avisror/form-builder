@@ -12,27 +12,13 @@ code {
     monospace;
 }
 
-/* My styles */
-ul {
-  list-style-type: none;
-  background-color: azure;
+/* General Styles */
+.selected {
+  background-color: rgb(136, 199, 183);
 }
 
 a {
   text-decoration: none;
-}
-
-li {
-  display: inline-block;
-  width: 120px;
-}
-
-li:hover {
-  background-color: rgb(148, 218, 223);
-}
-
-.selected {
-  background-color: rgb(136, 199, 183);
 }
 
 a:link {
@@ -41,8 +27,4 @@ a:link {
 
 a:visited {
   color: rgb(4, 22, 32);
-}
-
-div {
-  text-align: -webkit-center;
 }

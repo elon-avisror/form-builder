@@ -28,5 +28,5 @@ export enum LabelTypes {
 
 export interface LabelDAL extends BaseDAL {
     getByForm(form_id: number): Promise<Label[]>;
-    updatesOrCreates(label: Label[]): Promise<Label[]>;
+    updatesOrCreates(label: Label[]): Promise<Label[]>; // TODO: remove!
 };

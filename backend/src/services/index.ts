@@ -4,18 +4,19 @@ import { LabelService } from "./label";
 import { SubmissionService } from "./submission";
 
 export interface FormBuilderServices {
-    // FUTURE: Stand-Alone Services
+    // Stand-Alone Services
+    Label: LabelService;
 
     // System Services
     Form: FormService;
-    Label: LabelService;
     Submission: SubmissionService;
 };
 
 export function loadServices(DAL: FormBuilderDAL): FormBuilderServices {
     let services = <FormBuilderServices>{};
 
-    // FUTURE: Stand-Alone Services
+    // Stand-Alone Services
+    services.Label = new LabelService({ LabelDAL: DAL.Label });
 
     // System Services
     services.Form = new FormService({
@@ -23,8 +24,10 @@ export function loadServices(DAL: FormBuilderDAL): FormBuilderServices {
         LabelDAL: DAL.Label,
         SubmissionDAL: DAL.Submission
     });
-    services.Label = new LabelService({ LabelDAL: DAL.Label });
-    services.Submission = new SubmissionService({ SubmissionDAL: DAL.Submission });
+    services.Submission = new SubmissionService({
+        SubmissionDAL: DAL.Submission,
+        FormDAL: DAL.Form
+    });
 
     return services;
 };

@@ -19,10 +19,11 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
             headings: [],
             rows: [],
             types: []
-        }
+        };
     }
 
     componentDidMount = async () => {
+        const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/form/list'; // TODO: from config file
         const headings = [
             'Form ID',
             'Form Name',
@@ -30,9 +31,7 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
             'Link to Form Submit Page',
             'Link to Form Submissions List Page'
         ];
-
         try {
-            const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/form/list';
             const response = await axios.get(API_URL_FORM_LIST);
             const dataResponse = response.data;
             if (dataResponse.ok && Array.isArray(dataResponse.data) && dataResponse.data.length > 0) {
@@ -50,16 +49,8 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
                     formRows.push(form.id);
                     formRows.push(form.name);
                     formRows.push(form.submissions);
-
-                    formRows.push(`http://localhost.com:3000/page/submit.html/${form.id}`);
-                    formRows.push(`http://localhost.com:3000/page/submissions.html/${form.id}`);
-
-                    // TODO:
-                    // 1. Create a link to Form Submit Page (by this form.id)
-                    // 2. Create a link to Form Submissions List Page (by this form.id)
-                    // Examples:
-                    // 1. http://localhost.com:3000/page/submit/1
-                    // 2. http://localhost.com:3000/page/submissions/1
+                    formRows.push(`http://localhost.com:3000/page/submit/${form.id}`);
+                    formRows.push(`http://localhost.com:3000/page/submissions/${form.id}`);
 
                     rows.push(formRows);
                 });
@@ -74,7 +65,7 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
     render = (): JSX.Element => {
 
         return (
-            <div>
+            <div className="On-Table">
                 <h1>Forms List Page</h1>
                 <DataTable headings={this.state.headings} rows={this.state.rows} types={this.state.types} />
             </div>

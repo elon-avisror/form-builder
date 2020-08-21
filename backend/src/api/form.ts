@@ -7,21 +7,11 @@ export function FormRouter(formService: FormService) {
 
     router.post('/create', expressJson(), async (req, res) => {
         try {
-            const form = await formService.create(req.body.name);
+            const { name, labels } = req.body;
+            const form = await formService.create(name, labels);
             res.send(getResponseObject(null, form));
         } catch (err) {
-            console.error('[FormRouter]', 'Create', err);
-            res.send(getResponseObject());
-        }
-    });
-
-    router.get('/submission', async (req, res) => {
-        try {
-            const form_id = parseInt(req.query.form_id as string);
-            const [submissionForm] = await formService.get({ form_id });
-            res.send(getResponseObject(null, submissionForm));
-        } catch (err) {
-            console.error('[FormRouter]', 'Submission', err);
+            console.error('[FormRouter]', 'CreateForm', err);
             res.send(getResponseObject());
         }
     });
@@ -36,7 +26,7 @@ export function FormRouter(formService: FormService) {
             const submitedForm = await formService.submit(form_id, labels);
             res.send(getResponseObject(null, submitedForm));
         } catch (err) {
-            console.error('[FormRouter]', 'Submit', err);
+            console.error('[FormRouter]', 'CreateSubmission', err);
             res.send(getResponseObject());
         }
     });
@@ -46,7 +36,7 @@ export function FormRouter(formService: FormService) {
             const forms = await formService.get();
             res.send(getResponseObject(null, forms));
         } catch (err) {
-            console.error('[FormRouter]', 'List', err);
+            console.error('[FormRouter]', 'ListAllForms', err);
             res.send(getResponseObject());
         }
     });

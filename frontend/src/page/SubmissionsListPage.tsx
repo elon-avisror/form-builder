@@ -5,7 +5,7 @@ import { SubmissionAPI } from "../api/SubmissionAPI";
 import { LabelTypes } from "../api/LabelAPI";
 
 interface SubmissionsListPageProps {
-    form_id: number;
+    match: { params: { form_id: string } };
 };
 
 interface SubmissionsListPageState {
@@ -21,17 +21,15 @@ export default class SubmissionsListPage extends React.Component<SubmissionsList
             headings: [],
             rows: [],
             types: []
-        }
+        };
     }
 
     componentDidMount = async () => {
+        const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/submission/list'; // TODO: from config file
         const params = {
-            // form_id: this.props.form_id
-            form_id: 1
+            form_id: this.props.match.params.form_id
         };
-
         try {
-            const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/submission/list';
             const response = await axios.get(API_URL_FORM_LIST, { params });
             const dataResponse = response.data;
             if (dataResponse.ok && Array.isArray(dataResponse.data) && dataResponse.data.length > 0) {
@@ -42,6 +40,8 @@ export default class SubmissionsListPage extends React.Component<SubmissionsList
                 const types: LabelTypes[] = [];
                 submissions.forEach((submission, index) => {
                     const submissionRows: React.ReactText[] = [];
+                    if (!Array.isArray(submission.labels))
+                        return;
                     submission.labels.forEach(label => {
                         // Happens only once, for the first submission! (getting the headings from the labels)
                         if (index === 0) {
@@ -61,7 +61,7 @@ export default class SubmissionsListPage extends React.Component<SubmissionsList
 
     render = (): JSX.Element => {
         return (
-            <div>
+            <div className="On-Table">
                 <h1>Submissions List Page</h1>
                 <DataTable headings={this.state.headings} rows={this.state.rows} types={this.state.types} />
             </div>

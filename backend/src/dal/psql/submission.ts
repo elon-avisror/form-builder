@@ -18,15 +18,15 @@ export class PostgresSubmissionDAL implements SubmissionDAL {
         return result && result.rowCount === 1 && new Submission(result.rows[0]);
     }
 
-    async getByForm(form_id: number): Promise<Submission[]> {
+    async get(submission: Submission): Promise<Submission[]> {
         const results = await this.db.query(`
             SELECT
                 *
             FROM
                 "submission"
             WHERE
-                "form_id"=$1
-        `, [form_id]);
+                "form_id"=$1 AND "type"=$2
+        `, [submission.form_id, submission.type]);
         return results && results.rows.map(row => new Submission(row));
     }
     

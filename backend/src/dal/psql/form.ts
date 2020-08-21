@@ -28,6 +28,18 @@ export class PostgresFormDAL implements FormDAL {
         return results && results.rows.map(row => new Form(row));
     }
 
+    async getName(form_id: number): Promise<string> {
+        const result = await this.db.query(`
+            SELECT
+                "name"
+            FROM
+                "form"
+            WHERE
+                "id"=$1
+        `, [form_id]);
+        return result && result.rowCount === 1 && result.rows[0].name;
+    }
+
     async update(form: Form): Promise<Form> {
         const result = await this.db.query(`
             UPDATE

@@ -1,11 +1,7 @@
 import React from "react";
 import logo from "../logo.svg";
 
-interface HomePageProps {};
-
-interface HomePageState {};
-
-export default class HomePage extends React.Component<HomePageProps, HomePageState> {
+export default class HomePage extends React.Component {
     render = (): JSX.Element => {
         return (
             <div>

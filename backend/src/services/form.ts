@@ -1,6 +1,6 @@
 import { FormDAL, Form } from "../base/Form";
-import { Label, LabelDAL } from "../base/Label";
-import { SubmissionDAL, Submission } from "../base/Submission";
+import { LabelDAL, Label } from "../base/Label";
+import { SubmissionDAL, Submission, SubmissionType } from "../base/Submission";
 
 export interface FormServiceDependencies {
     FormDAL: FormDAL;
@@ -15,8 +15,17 @@ export class FormService {
         this.tools = dependencies;
     }
 
-    async create(name: string) {
+    async create(name: string, labels: any): Promise<Form> {
         const form = await this.tools.FormDAL.create(new Form({ name }));
+        if (!form)
+            throw new Error('Cannot create form.');
+        // By default it will create a blank form
+        const submission = await this.tools.SubmissionDAL.create(new Submission({
+            labels,
+            form_id: form.id
+        }));
+        if (!submission)
+            throw new Error(`Cannot create submission to form with id ${form.id}.`);
         return form;
     }
 
@@ -27,19 +36,29 @@ export class FormService {
         return forms;
     }
 
-    async submit(form_id: number, labels: any): Promise<boolean> {
-        if (!(Array.isArray(labels)))
+    async submit(form_id: number, labels: any[]): Promise<boolean> {
+        if (!Array.isArray(labels))
             return;
+
         const lables = [];
+        const form: Form = await this.tools.FormDAL.getById(form_id);
         for (let i = 0; i < labels.length; i++) {
             lables.push(await this.tools.LabelDAL.create(new Label({
-                form_id,
+                form_id: form.id,
                 ...labels[i]
             })))
         }
+
         const formSubmit = await this.tools.SubmissionDAL.create(new Submission({
-            form_id, labels: labels as any
+            form_id: form.id,
+            labels: labels as any,
+            type: SubmissionType.Submited
         }));
-        return !!formSubmit;
+        if (!formSubmit)
+            return !!formSubmit;
+
+        form.submissions++;
+        const result = await this.tools.FormDAL.update(form);
+        return !!result;
     }
 };

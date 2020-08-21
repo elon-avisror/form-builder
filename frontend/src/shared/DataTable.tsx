@@ -8,10 +8,8 @@ interface DataTableProps {
     types: LabelTypes[];
 };
 
-interface DataTableState {};
-
-export default class DataTable extends React.Component<DataTableProps, DataTableState> {
-    renderHeadingRow = (_cell: any, cellIndex: number): JSX.Element => {
+export default class DataTable extends React.Component<DataTableProps> {
+    private renderHeadingRow = (_cell: any, cellIndex: number): JSX.Element => {
         const { headings } = this.props;
 
         return (
@@ -25,7 +23,7 @@ export default class DataTable extends React.Component<DataTableProps, DataTable
         );
     };
     
-    renderRow = (_row: any, rowIndex: number): JSX.Element => {
+    private renderRow = (_row: any, rowIndex: number): JSX.Element => {
         const { headings, rows } = this.props;
 
         return (
