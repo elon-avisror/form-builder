@@ -1,11 +1,11 @@
-import { PoolConfig, Pool, QueryResult } from "pg";
-import { FormBuilderDAL } from "../../base/DAL";
-import { FormDAL } from "../../base/Form";
-import { LabelDAL } from "../../base/Label";
-import { SubmissionDAL } from "../../base/Submission";
-import { PostgresFormDAL } from "./form";
-import { PostgresLabelDAL } from "./label";
-import { PostgresSubmissionDAL } from "./submission";
+import { PoolConfig, Pool, QueryResult } from 'pg';
+import { FormBuilderDAL } from '../../base/DAL';
+import { FormDAL } from '../../base/Form';
+import { LabelDAL } from '../../base/Label';
+import { SubmissionDAL } from '../../base/Submission';
+import { PostgresFormDAL } from './form';
+import { PostgresLabelDAL } from './label';
+import { PostgresSubmissionDAL } from './submission';
 
 export interface PostgresDALConfig {
     poolConfig: PoolConfig;

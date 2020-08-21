@@ -30,20 +30,20 @@ export default class Cell extends React.Component<CellProps> {
         return (
             this.props.header ?
                 (
-                    <th className="Cell Cell-header">
+                    <th className='Cell Cell-header'>
                         {this.props.content}
                     </th>
                 )
                 :
                 typeof this.props.content === 'string' && this.validURL(this.props.content) ?
                     (
-                        <td className="Cell" itemType={this.props.type}>
-                            <Link style={{ color: "blue" }} to={this.props.content.replace('http://localhost.com:3000', '')}>View button</Link>
+                        <td className='Cell' itemType={this.props.type}>
+                            <Link style={{ color: 'blue' }} to={this.props.content.replace('http://localhost.com:3000', '')}>View button</Link>
                         </td>
                     )
                     :
                     (
-                        <td className="Cell" itemType={this.props.type}>
+                        <td className='Cell' itemType={this.props.type}>
                             {this.props.content}
                         </td>
                     )

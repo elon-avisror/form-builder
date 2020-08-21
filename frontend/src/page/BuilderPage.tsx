@@ -1,13 +1,5 @@
-import React from "react";
-import Wizard from "../shared/Wizard";
-
-/*
-TODO: a container of:
-1. Field label
-2. Input name
-3. Input type
-4. Submit button in otder to save this form
-*/
+import React from 'react';
+import Wizard from '../shared/Wizard';
 
 interface BuilderPageProps {
     history: string[];

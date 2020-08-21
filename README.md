@@ -1,10 +1,10 @@
-# Form Builder - Solution
+# Form Builder - Solution (Frontend + Backend)
 
 ## Guides
 
-In order to run the forms-builder-**backend**, go the **backend** directory to his README file, and follow his steps.
+In order to run the form-builder-**backend**, go the **backend** directory to his README file, and follow his steps.
 
-Same for forms-builder-**frontend**.
+Same for form-builder-**frontend**.
 
 ## Form Builder - Task Description
 

@@ -47,7 +47,7 @@ export default class DataTable extends React.Component<DataTableProps> {
         const { headings, rows } = this.props;
 
         const theadMarkup = (
-            <tr key="heading">
+            <tr key='heading'>
                 {headings.map(this.renderHeadingRow)}
             </tr>
         );
@@ -55,7 +55,7 @@ export default class DataTable extends React.Component<DataTableProps> {
         const tbodyMarkup = rows.map(this.renderRow);
     
         return (
-            <table className="Table">
+            <table className='Table'>
                 <thead>{theadMarkup}</thead>
                 <tbody>{tbodyMarkup}</tbody>
             </table>

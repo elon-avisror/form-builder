@@ -1,7 +1,7 @@
-import React from "react";
-import axios from "axios";
-import { LabelAPI, LabelTypes } from "../api/LabelAPI";
-import { ChangeEvent, SubmitEvent } from "./EventTypes";
+import React from 'react';
+import axios from 'axios';
+import { LabelAPI, LabelTypes } from '../api/LabelAPI';
+import { ChangeEvent, SubmitEvent } from './EventTypes';
 
 interface WizardProps {
     history: string[];
@@ -53,14 +53,20 @@ export default class Wizard extends React.Component<WizardProps, WizardState> {
         }
     }
 
-    private handleClick = () => {
+    private handleAddClick = () => {
         const labels = this.state.labels;
         const newEmptyLabel: any = {
             id: labels.length,
             type: LabelTypes.Text,
-            name: ""
+            name: ''
         }
         labels.push(newEmptyLabel);
+        this.setState({ labels });
+    }
+
+    private handleRemoveClick = () => {
+        const labels = this.state.labels;
+        labels.pop();
         this.setState({ labels });
     }
 
@@ -90,15 +96,21 @@ export default class Wizard extends React.Component<WizardProps, WizardState> {
                 <b><p>Form Name</p></b>
                 <h2>
                     <input
-                        type="text"
-                        name="form-name"
+                        type='text'
+                        name='form-name'
                         value={this.state.formName}
                         onChange={this.handleChange}
                     />
                 </h2>
                 <b><legend>Form Fields</legend></b>
-                <fieldset style={{display: "inline-block"}}>
-                <button onClick={this.handleClick}>Add Field</button>
+                <fieldset style={{display: 'inline-block'}}>
+                <button onClick={this.handleAddClick}>Add Field</button>
+                <button
+                    type='button'
+                    onClick={this.handleRemoveClick}
+                >
+                    Remove Field
+                </button>
                     <form onSubmit={this.handleSubmit}>
                             {/* Labels container */}
                             {Array.isArray(this.state.labels) && this.state.labels.length > 0 ?
@@ -106,11 +118,11 @@ export default class Wizard extends React.Component<WizardProps, WizardState> {
                                     return (
                                         <fieldset key={index.toString()}>
                                             <select name={label.id.toString()} onChange={this.handleSelect}>
-                                                <option value="text">text</option>
-                                                <option value="date">date</option>
-                                                <option value="email">email</option>
-                                                <option value="tel">tel</option>
-                                                <option value="number">number</option>
+                                                <option value='text'>text</option>
+                                                <option value='date'>date</option>
+                                                <option value='email'>email</option>
+                                                <option value='tel'>tel</option>
+                                                <option value='number'>number</option>
                                             </select>
                                             <input
                                                 name={label.id.toString()}
@@ -122,10 +134,10 @@ export default class Wizard extends React.Component<WizardProps, WizardState> {
                                 })
                             :
                                 <div>
-                                    <b>Add new fields by clicking "Add Field" button.</b>
+                                    <b>Add new fields by clicking 'Add Field' button.</b>
                                 </div>
                             }
-                        <input name="create-form" type="submit" />
+                        <input name='create-form' type='submit' />
                     </form>
             </fieldset>
             </div>

@@ -1,4 +1,4 @@
-import { LabelAPI } from "./LabelAPI";
+import { LabelAPI } from './LabelAPI';
 
 export interface SubmissionAPI {
     id: number;

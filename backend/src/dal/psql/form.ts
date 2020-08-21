@@ -1,5 +1,5 @@
-import { FormDAL, Form } from "../../base/Form";
-import { PostgresDAL } from ".";
+import { FormDAL, Form } from '../../base/Form';
+import { PostgresDAL } from '.';
 
 export class PostgresFormDAL implements FormDAL {
     db: PostgresDAL;

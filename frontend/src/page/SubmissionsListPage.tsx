@@ -1,8 +1,8 @@
-import React from "react";
-import axios from "axios";
-import DataTable from "../shared/DataTable";
-import { SubmissionAPI } from "../api/SubmissionAPI";
-import { LabelTypes } from "../api/LabelAPI";
+import React from 'react';
+import axios from 'axios';
+import DataTable from '../shared/DataTable';
+import { SubmissionAPI } from '../api/SubmissionAPI';
+import { LabelTypes } from '../api/LabelAPI';
 
 interface SubmissionsListPageProps {
     match: { params: { form_id: string } };
@@ -25,7 +25,7 @@ export default class SubmissionsListPage extends React.Component<SubmissionsList
     }
 
     componentDidMount = async () => {
-        const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/submission/list'; // TODO: from config file
+        const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/submission/list';
         const params = {
             form_id: this.props.match.params.form_id
         };
@@ -61,7 +61,7 @@ export default class SubmissionsListPage extends React.Component<SubmissionsList
 
     render = (): JSX.Element => {
         return (
-            <div className="On-Table">
+            <div className='On-Table'>
                 <h1>Submissions List Page</h1>
                 <DataTable headings={this.state.headings} rows={this.state.rows} types={this.state.types} />
             </div>

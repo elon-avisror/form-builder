@@ -23,7 +23,7 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
     }
 
     componentDidMount = async () => {
-        const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/form/list'; // TODO: from config file
+        const API_URL_FORM_LIST = 'https://api.form-builder.com:4000/form/list';
         const headings = [
             'Form ID',
             'Form Name',
@@ -65,7 +65,7 @@ export default class FormsListPage extends React.Component<FormsListPageProps, F
     render = (): JSX.Element => {
 
         return (
-            <div className="On-Table">
+            <div className='On-Table'>
                 <h1>Forms List Page</h1>
                 <DataTable headings={this.state.headings} rows={this.state.rows} types={this.state.types} />
             </div>

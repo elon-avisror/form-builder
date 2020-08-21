@@ -1,4 +1,4 @@
-import { BaseDAL } from "./DAL";
+import { BaseDAL } from './DAL';
 
 export class Label {
     id: number;
@@ -26,7 +26,4 @@ export enum LabelTypes {
     Number = 'number'
 };
 
-export interface LabelDAL extends BaseDAL {
-    getByForm(form_id: number): Promise<Label[]>;
-    updatesOrCreates(label: Label[]): Promise<Label[]>; // TODO: remove!
-};
+export interface LabelDAL extends BaseDAL {};

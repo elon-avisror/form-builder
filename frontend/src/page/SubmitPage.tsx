@@ -1,7 +1,7 @@
-import React from "react";
-import axios from "axios";
-import { SubmissionAPI } from "../api/SubmissionAPI";
-import { ChangeEvent, SubmitEvent } from "../shared/EventTypes";
+import React from 'react';
+import axios from 'axios';
+import { SubmissionAPI } from '../api/SubmissionAPI';
+import { ChangeEvent, SubmitEvent } from '../shared/EventTypes';
 
 interface SubmitPageProps {
     history: string[];
@@ -80,11 +80,11 @@ export default class SubmitPage extends React.Component<SubmitPageProps, SubmitP
                         {Array.isArray(this.state.submission.labels) && this.state.submission.labels.length > 0 ?
                             <div>
                                 <b><legend>{this.state.submission.name}</legend></b>
-                                <fieldset style={{display: "inline-block"}}>
+                                <fieldset style={{display: 'inline-block'}}>
                                     {this.state.submission.labels.map((label, index) => {
                                         return (
                                             <div key={index.toString()}>
-                                                <p style={{backgroundColor: "azure"}}>{label.name}</p>
+                                                <p style={{backgroundColor: 'azure'}}>{label.name}</p>
                                                 <input
                                                     type={label.type}
                                                     name={label.name}
@@ -99,7 +99,7 @@ export default class SubmitPage extends React.Component<SubmitPageProps, SubmitP
                         :
                             <div></div>
                         }
-                        <input name="submit-form" type="submit" />
+                        <input name='submit-form' type='submit' />
                     </form>
                 :
                     <div></div>

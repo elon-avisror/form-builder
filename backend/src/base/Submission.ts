@@ -1,4 +1,4 @@
-import { BaseDAL } from "./DAL";
+import { BaseDAL } from './DAL';
 
 export class Submission {
     id: number;
@@ -38,8 +38,8 @@ export class Submission {
 };
 
 export enum SubmissionType {
-    Blank = "BLANK",
-    Submited = "SUBMITED"
+    Blank = 'BLANK',
+    Submited = 'SUBMITED'
 };
 
 export interface SubmissionDAL extends BaseDAL {

@@ -1,4 +1,4 @@
-import { BaseDAL } from "./DAL";
+import { BaseDAL } from './DAL';
 
 export class Form {
     id: number;

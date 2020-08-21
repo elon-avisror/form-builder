@@ -3,7 +3,6 @@ import { FormBuilderAPI } from './api';
 import { Postgres } from './dal';
 import { FormBuilderServices, loadServices } from "./services";
 import { FormRouter } from './api/form';
-import { LabelRouter } from "./api/label";
 import { SubmissionRouter } from "./api/submission";
 
 dotenv.config();
@@ -49,7 +48,6 @@ async function FormBuilderCore() {
 
     // Routers
     API.setRouter('/form', FormRouter(Services.Form));
-    API.setRouter('/label', LabelRouter(Services.Label));
     API.setRouter('/submission', SubmissionRouter(Services.Submission));
     
     await API.launch();

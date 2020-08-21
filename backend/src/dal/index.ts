@@ -1,4 +1,4 @@
-import { PostgresDAL, PostgresDALConfig } from "./psql";
+import { PostgresDAL, PostgresDALConfig } from './psql';
 
 export async function Postgres(options: PostgresDALConfig): Promise<PostgresDAL> {
     const newDAL = new PostgresDAL(options);

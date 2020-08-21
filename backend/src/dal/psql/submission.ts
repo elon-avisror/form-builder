@@ -1,5 +1,5 @@
-import { SubmissionDAL, Submission } from "../../base/Submission";
-import { PostgresDAL } from ".";
+import { SubmissionDAL, Submission } from '../../base/Submission';
+import { PostgresDAL } from '.';
 
 export class PostgresSubmissionDAL implements SubmissionDAL {
     db: PostgresDAL;

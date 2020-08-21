@@ -1,20 +1,29 @@
-# Header
+# Form-Builder API
 
 ## Backend Installation
 
 1. Make sure you have installed dev dependencies:
 
-    * [nodejs](someurl)
-    * [typescript](someurl)
-    * [postgres](someurl)
-    * [psql](someurl)
-    * [pgadmin4](someurl) - Optional
+    * [nodejs](https://nodejs.org/en/download/)
+    * [typescript](https://www.npmjs.com/package/typescript))
+    * [postgres](https://www.postgresql.org/download/)
+    * [pgadmin4](https://www.pgadmin.org/download/) - Client tool (Optional)
 
-2. Get in to **backend** directory (by "**cd backend**" command or another way you like) and run the following commands:
+2. Run the following commands:
 
+    Mandatories:
+
+        cd backend
         npm install
-        source src/dal/psql/scripts/
-        create.sql
+        sudo -u postgres psql form_builder < {RELATIVE_PATH}/src/dal/scripts/create.sql
         npm start
 
-3. And you are set! (TODO: .env file)
+    Optional - Mock Metadata:
+
+        sudo -u postgres psql form_builder < <relative-project-path>/src/dal/scripts/meta.sql
+
+   Finally - Run the Backend API by executing:
+
+        npm start
+
+   And you are set!
