@@ -1,8 +1,16 @@
 # Form Builder - Solution (Frontend + Backend)
 
-## Guides
+## Getting Started
 
-In order to run the form-builder-**backend**, go the **backend** directory to his README file, and follow his steps.
+Wellcome to Form Builder App.
+
+First of all you need to maker sure you have a git install in your machine.
+
+In order to **getting started** you need to clone this project by executing the following command:
+
+    git clone https://github.com/elon-avisror/form-builder.git
+
+Now, you need to run the form-builder-**backend**, in order to do so, go the **backend** directory to his README file, and follow his steps.
 
 Same for form-builder-**frontend**.
 

@@ -7,33 +7,47 @@
     * [nodejs](https://nodejs.org/en/download/)
     * [typescript](https://www.npmjs.com/package/typescript)
     * [postgres](https://www.postgresql.org/download/)
+    * [openssl](https://www.openssl.org/source/)
     * [pgadmin4](https://www.pgadmin.org/download/) - Client tool (Optional)
 
-2. Run the following commands:
+2. Configuration manners:
 
-    Configuration manners - look for the **.env.local** configuration file and copy it as **.env** file name (with the same directory). Add to your local **hosts** file the following row:
+    Go to a **secret folder** in your machine (not this project) and do the following command in order to create SSL key and certificate:
+
+        openssl req -nodes -new -x509 -keyout key.pem -out cert.pem
+
+    *Note: if you are using google-chrome as your browser, you need to approve this certificate in order to enable the HTTP requests of the **frontend**.*
+
+    Add to your local **hosts** file the following row:
 
         127.0.0.1   api.form-builder.com form-builder.com
 
-    Creating DB:
+    Back to **backend** folder, in this root backend directory, look for the **.env.local** template configuration file and edit it by enter the absolute path (with no aliases like **~**) to **key.pem** and **cert.pem** ssl secret files.
+
+    Then, copy it as **.env** file name (with the same directory). This is the real configuration file of this machine.
+
+        cp .env.local .env
+
+    Now, you need to create the backend database:
 
         sudo -u postgres psql
-        \c form_builder
+        CREATE DATABASE form_builder;
         \q
 
-    Installations:
+    Install project dependencies:
 
-        cd backend
-        npm install
-        sudo -u postgres psql form_builder < {RELATIVE_PATH}/src/dal/scripts/create.sql
+        npm i
+
+    Create the database tabels:
+
+        sudo -u postgres psql form_builder < {RELATIVE_PATH}/src/dal/psql/scripts/create.sql
+
+    Optional, you can create some mock metadata to the empty database tables (as mention in the task description section in the root README.md file):
+
+        sudo -u postgres psql form_builder < {RELATIVE_PATH}/src/dal/psql/scripts/meta.sql
+
+    Finally - Run the Backend API by executing:
+
         npm start
 
-    Optional - Mock Metadata:
-
-        sudo -u postgres psql form_builder < {RELATIVE_PATH}/src/dal/scripts/meta.sql
-
-   Finally - Run the Backend API by executing:
-
-        npm start
-
-   And you are set!
+    The Backend API is runnigm and you are set!
