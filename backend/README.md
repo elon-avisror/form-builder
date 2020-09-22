@@ -22,11 +22,26 @@
 
         127.0.0.1   api.form-builder.com form-builder.com
 
-    Back to **backend** folder, in this root backend directory, look for the **.env.local** template configuration file and edit it by enter the absolute path (with no aliases like **~**) to **key.pem** and **cert.pem** ssl secret files.
+    Back to **backend** folder, in this root backend directory, look for the **.env.local** template configuration file.
 
-    Then, copy it as **.env** file name (with the same directory). This is the real configuration file of this machine.
+    Then, copy it as **.env** file name (with the same directory).
 
         cp .env.local .env
+
+    This is the real configuration file of this machine.
+
+    Now, edit it by enter the absolute path (with no aliases like **~**) to **key.pem** and **cert.pem** ssl secret files.
+
+    Write your postgres password, if you don't know/remmember it, you can run the following commands:
+
+        sudo -u postgres psql
+        \password
+
+    The enter your new postgres password...
+
+    Once you finish, quit by:
+
+        \q
 
     Now, you need to create the backend database:
 
@@ -40,14 +55,14 @@
 
     Create the database tabels:
 
-        sudo -u postgres psql form_builder < {RELATIVE_PATH}/src/dal/psql/scripts/create.sql
+        sudo -u postgres psql form_builder < ./src/dal/psql/scripts/create.sql
 
     Optional, you can create some mock metadata to the empty database tables (as mention in the task description section in the root README.md file):
 
-        sudo -u postgres psql form_builder < {RELATIVE_PATH}/src/dal/psql/scripts/meta.sql
+        sudo -u postgres psql form_builder < ./src/dal/psql/scripts/meta.sql
 
-    Finally - Run the Backend API by executing:
+    Finally, you can run the Backend API by executing:
 
         npm start
 
-    The Backend API is runnigm and you are set!
+    The Backend API is now running!
